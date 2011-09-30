@@ -11,7 +11,7 @@
       %span{:class => "divider"} /
     %li
       %span New Envelope
-  =form_for @account.envelopes.new, :class => "form-stacked" do |f|
+  =form_for @account.envelopes.new, :url => account_envelopes_path(@account), :class => "form-stacked" do |f|
     .form-stacked
       %fieldset
         =f.label :envelope_name

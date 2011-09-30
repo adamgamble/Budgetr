@@ -4,6 +4,9 @@ class EnvelopesController < ApplicationController
   end
 
   def create
+    @account = current_user.accounts.find_by_id params[:account_id]
+    @account.envelopes.create(params[:envelope])
+    redirect_to account_path(@account)
   end
 
   def show
