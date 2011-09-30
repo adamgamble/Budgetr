@@ -43,4 +43,5 @@
           -else
             .pull-right
               =button_to "Logout", destroy_user_session_path, :method => :delete
-    = yield
+    #main-page
+      = yield
