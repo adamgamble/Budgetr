@@ -20,7 +20,7 @@ development:
   username: adamgamble
   password:
 
-test:
+test: &test
   adapter: postgresql
   encoding: unicode
   database: budgetr_test
@@ -35,3 +35,6 @@ production:
   pool: 5
   username: adamgamble
   password:
+
+cucumber:
+  <<: *test

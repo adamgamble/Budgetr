@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110930054410) do
+ActiveRecord::Schema.define(:version => 20110930064117) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -32,6 +32,13 @@ ActiveRecord::Schema.define(:version => 20110930054410) do
     t.decimal  "amount",      :precision => 10, :scale => 3
     t.integer  "envelope_id"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_join_accounts", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "account_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

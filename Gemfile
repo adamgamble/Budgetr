@@ -19,4 +19,6 @@ group :test do
   gem 'rspec-rails'
   gem 'json_spec', "~> 0.6.0"
   gem 'shoulda', '~> 2.11.3'
+  gem 'cucumber-rails'
+  gem 'database_cleaner'
 end

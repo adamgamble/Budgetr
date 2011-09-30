@@ -1,0 +1,19 @@
+.container
+  .page-header
+    %h1
+      =@account.name
+      %small= number_to_currency(@account.balance)
+  %ul.breadcrumb
+    %li
+      %a{:href => "/dashboard"} Dashboard
+      %span{:class => "divider"} /
+    %li
+      %span=@account.name
+  %h2 
+    Envelopes
+    %small=link_to "New Envelope", new_account_envelope_path(@account)
+  %table
+    -@account.envelopes.each do |envelope|
+      %tr
+        %td=link_to envelope.name, account_envelope_path(@account, envelope)
+        %td=number_to_currency(envelope.balance)

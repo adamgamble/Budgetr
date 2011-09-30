@@ -1,0 +1,32 @@
+.container
+  .page-header
+    %h1
+      =@envelope.name
+      %small= number_to_currency(@envelope.balance)
+  %ul.breadcrumb
+    %li
+      %a{:href => "/dashboard"} Dashboard
+      %span{:class => "divider"} /
+    %li
+      %a{:href => account_path(@envelope.account)}=@envelope.account.name
+      %span{:class => "divider"} /
+    %li
+      %span=@envelope.name
+  %h3
+    Transactions
+    %small=link_to "New Transaction", new_account_envelope_transaction_path(@envelope.account, @envelope)
+  -if @envelope.transactions.any?
+    %table
+      %tr
+        %th Date
+        %th Description
+        %th Amount
+        %th User
+      -@envelope.transactions.each do |transaction|
+        %tr
+          %td=transaction.created_at.strftime("%m/%d/%y")
+          %td=transaction.description
+          %td=number_to_currency(transaction.amount)
+          %td=transaction.user.email
+  -else
+    %h4 No Transactions Yet!

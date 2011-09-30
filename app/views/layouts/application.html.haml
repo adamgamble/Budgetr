@@ -15,17 +15,26 @@
         }
       </style>
   %body
+    - if flash[:notice]
+      .alert-message.info.fade.in{"data-alert" => "alert"}
+        %a.close{:href => "#"}x
+        %p=flash[:notice]
+    - if flash[:alert]
+      .alert-message.error.fade.in{"data-alert" => "alert"}
+        %a.close{:href => "#"}x
+        %p=flash[:alert]
+    - if flash[:error]
+      .alert-message.error.fade.in{"data-alert" => "alert"}
+        %a.close{:href => "#"}x
+        %p=flash[:error]
     .topbar
       .fill
         .container
           %a.brand{:href=> root_path}Budgetr
-          %ul.nav
-            %li.active
-              %a{:href => "#"}Home
-            %li
-              %a{:href => "#about"}About
-            %li
-              %a{:href => "#contact"}Contact
+          -if current_user
+            %ul.nav
+              %li.active
+                %a{:href => dashboard_path}Dashboard
           -unless current_user
             =form_tag user_session_path, :class => "pull-right" do
               =text_field_tag "user[email]",nil,  :class => "input-small", :placeholder => "email"
@@ -34,16 +43,4 @@
           -else
             .pull-right
               =button_to "Logout", destroy_user_session_path, :method => :delete
-    - if flash[:notice]
-      .alert-message.info{"data-alert" => "alert"}
-        %a.close{:href => "#"}x
-        %p=flash[:notice]
-    - if flash[:alert]
-      .alert-message.error{"data-alert" => "alert"}
-        %a.close{:href => "#"}x
-        %p=flash[:alert]
-    - if flash[:error]
-      .alert-message.error{"data-alert" => "alert"}
-        %a.close{:href => "#"}x
-        %p=flash[:error]
     = yield

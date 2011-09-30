@@ -1,0 +1,22 @@
+.container
+  .page-header
+    %h1
+      Create New Envelope
+  %ul.breadcrumb
+    %li
+      %a{:href => "/dashboard"} Dashboard
+      %span{:class => "divider"} /
+    %li
+      %a{:href => account_path(@account)}=@account.name
+      %span{:class => "divider"} /
+    %li
+      %span New Envelope
+  =form_for @account.envelopes.new, :class => "form-stacked" do |f|
+    .form-stacked
+      %fieldset
+        =f.label :envelope_name
+        =f.text_field :name, :class => "xlarge error"
+        %br
+        %br
+        =f.submit :class => "btn primary"
+

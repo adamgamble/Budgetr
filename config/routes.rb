@@ -2,6 +2,16 @@ Budgetr::Application.routes.draw do
   devise_for :users
 
   root :to => "custom_pages#home"
+
+  match "/dashboard", :to => "custom_pages#dashboard"
+
+  resources :accounts do
+    resources :envelopes do
+      resources :transactions
+    end
+  end
+  resources :envelopes
+  resources :transactions
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
