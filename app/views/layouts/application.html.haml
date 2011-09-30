@@ -18,7 +18,7 @@
     .topbar
       .fill
         .container
-          %a.brand{:href=> "#"}Budgetr
+          %a.brand{:href=> root_path}Budgetr
           %ul.nav
             %li.active
               %a{:href => "#"}Home
@@ -26,7 +26,24 @@
               %a{:href => "#about"}About
             %li
               %a{:href => "#contact"}Contact
-          =form_tag "test", :class => "pull-right" do
-            =text_field_tag :test,nil,  :class => "input-small", :placeholder => "email", :id => nil, :name => nil
-            %button.btn{:type => "submit"}Sign In
+          -unless current_user
+            =form_tag user_session_path, :class => "pull-right" do
+              =text_field_tag "user[email]",nil,  :class => "input-small", :placeholder => "email"
+              =password_field_tag "user[password]", nil,  :class => "input-small", :placeholder => "password"
+              %button.btn{:type => "submit"}Sign In
+          -else
+            .pull-right
+              =button_to "Logout", destroy_user_session_path, :method => :delete
+    - if flash[:notice]
+      .alert-message.info{"data-alert" => "alert"}
+        %a.close{:href => "#"}x
+        %p=flash[:notice]
+    - if flash[:alert]
+      .alert-message.error{"data-alert" => "alert"}
+        %a.close{:href => "#"}x
+        %p=flash[:alert]
+    - if flash[:error]
+      .alert-message.error{"data-alert" => "alert"}
+        %a.close{:href => "#"}x
+        %p=flash[:error]
     = yield

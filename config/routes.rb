@@ -1,4 +1,6 @@
 Budgetr::Application.routes.draw do
+  devise_for :users
+
   root :to => "custom_pages#home"
   # The priority is based upon order of creation:
   # first created -> highest priority.
