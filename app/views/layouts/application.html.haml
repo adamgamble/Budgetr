@@ -1,0 +1,32 @@
+%html
+  %head
+    %title Budgetr
+    = stylesheet_link_tag    "application"
+    = javascript_include_tag "application"
+    :plain
+      <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+      <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+      <![endif]-->
+
+      <style type="text/css">
+        body {
+          padding-top: 60px;
+        }
+      </style>
+  %body
+    .topbar
+      .fill
+        .container
+          %a.brand{:href=> "#"}Budgetr
+          %ul.nav
+            %li.active
+              %a{:href => "#"}Home
+            %li
+              %a{:href => "#about"}About
+            %li
+              %a{:href => "#contact"}Contact
+          =form_tag "test", :class => "pull-right" do
+            =text_field_tag :test,nil,  :class => "input-small", :placeholder => "email", :id => nil, :name => nil
+            %button.btn{:type => "submit"}Sign In
+    = yield
