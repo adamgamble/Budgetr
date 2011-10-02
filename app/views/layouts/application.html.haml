@@ -15,18 +15,6 @@
         }
       </style>
   %body
-    - if flash[:notice]
-      .alert-message.info.fade.in{"data-alert" => "alert"}
-        %a.close{:href => "#"}x
-        %p=flash[:notice]
-    - if flash[:alert]
-      .alert-message.error.fade.in{"data-alert" => "alert"}
-        %a.close{:href => "#"}x
-        %p=flash[:alert]
-    - if flash[:error]
-      .alert-message.error.fade.in{"data-alert" => "alert"}
-        %a.close{:href => "#"}x
-        %p=flash[:error]
     .topbar
       .fill
         .container
@@ -44,4 +32,17 @@
             .pull-right
               =button_to "Logout", destroy_user_session_path, :method => :delete
     #main-page
-      = yield
+      .container
+        - if flash[:notice]
+          .alert-message.info.fade.in{"data-alert" => "alert"}
+            %a.close{:href => "#"}x
+            %p=flash[:notice]
+        - if flash[:alert]
+          .alert-message.error.fade.in{"data-alert" => "alert"}
+            %a.close{:href => "#"}x
+            %p=flash[:alert]
+        - if flash[:error]
+          .alert-message.error.fade.in{"data-alert" => "alert"}
+            %a.close{:href => "#"}x
+            %p=flash[:error]
+        = yield

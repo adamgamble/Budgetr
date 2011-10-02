@@ -1,0 +1,20 @@
+.page-header
+  %h1
+    Create New Paycheck
+%ul.breadcrumb
+  %li
+    %a{:href => "/dashboard"} Dashboard
+    %span{:class => "divider"} /
+  %li
+    %span New Paycheck
+=form_for Paycheck.new, :class => "form-stacked" do |f|
+  .form-stacked
+    %fieldset
+      =f.label :name
+      =f.text_field :name, :class => "xlarge"
+      =f.label :amount
+      =f.text_field :amount, :class => "xlarge"
+      %br
+      %br
+      =f.submit :class => "btn primary"
+

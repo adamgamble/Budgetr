@@ -5,6 +5,9 @@ Budgetr::Application.routes.draw do
 
   match "/dashboard", :to => "custom_pages#dashboard"
 
+  resources :paychecks do
+    get "payout"
+  end
   resources :accounts do
     resources :envelopes do
       resources :transactions
