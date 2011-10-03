@@ -6,6 +6,7 @@ gem 'pg'
 gem 'kaminari'
 gem 'devise'
 gem 'jquery-rails'
+gem 'therubyracer-heroku'
 
 # Gems used only for assets and not required
 # in production environments by default.
