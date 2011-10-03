@@ -6,6 +6,11 @@ class TransactionsController < ApplicationController
 
   def create
     @envelope = current_user.envelopes.find(params[:envelope_id])
+    if !params["deposit"] && @envelope.balance < BigDecimal(params["transaction"]["amount"])
+      flash[:error] = "You can't make a withdrawal greater than the envelope balance."
+      render :action => :new
+      return
+    end
     transaction = @envelope.transactions.new(params[:transaction])
     transaction.user = current_user
     transaction.amount = transaction.amount * -1 unless params["deposit"]
