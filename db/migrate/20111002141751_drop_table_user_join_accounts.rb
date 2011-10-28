@@ -12,7 +12,6 @@ class DropTableUserJoinAccounts < ActiveRecord::Migration
 
       t.timestamps
     end
-    drop_table :user_join_accounts
   end
 
   def down

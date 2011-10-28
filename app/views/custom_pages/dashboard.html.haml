@@ -6,7 +6,7 @@
 .content
   %h3 
     Accounts
-    %small.pull-right.btn=link_to "New Account", "#"
+    %small.pull-right.btn=link_to "New Account", new_account_path
   %table.zebra-striped
     -current_user.accounts.each do |account|
       %tr
